@@ -82,11 +82,12 @@ h6 {
   font-weight: normal;
   color: #067df7;
 }
-.countr-share_link {
-  text-align: center;
+.countr-link {
   font-size: 13px;
-  margin: 0 auto;
-  display: block;
+  color: #bd10e0;
+}
+.countr-link:hover {
+  text-decoration: underline;
 }
 `
 

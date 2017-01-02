@@ -4,6 +4,9 @@ import Header from '../components/header'
 import styles from '../components/style'
 import uuid from 'uuid/v4'
 import Modal from 'react-modal'
+function toBuffer(obj) {
+  return new Buffer(JSON.stringify(obj)).toString('base64')
+}
 export default class Countr extends React.Component {
   constructor() {
     super()
@@ -23,10 +26,10 @@ export default class Countr extends React.Component {
   }
   addCountr() {
     const input = this.refs.addInput.value
-    if(input.length > 25) {
+    if (input.length > 25) {
       alert(`${input} is a bit too long. Max 25 Chars`)
     }
-    if(input && input.length <= 25) {
+    if (input && input.length <= 25) {
       this.closeModal()
       const id = uuid()
       const newCountr = {}
@@ -37,18 +40,18 @@ export default class Countr extends React.Component {
       const newCounter = Object.assign({}, this.state.counter, newCountr)
       this.setState({
         counter: newCounter,
-        hash: new Buffer(JSON.stringify(newCountr)).toString('base64')
+        hash: toBuffer(newCountr)
       })
     }
   }
   handleDel(key) {
     const deleted = this.state.counter
     const res = confirm(`Delete ${deleted[key].name}?`)
-    if(res) {
+    if (res) {
       delete deleted[key]
       this.setState({
         counter: deleted,
-        hash: new Buffer(JSON.stringify(deleted)).toString('base64')
+        hash: toBuffer(deleted)
       })
     }
   }
@@ -58,7 +61,7 @@ export default class Countr extends React.Component {
     const newCountr = Object.assign({}, this.state.counter, countr[id].n)
     this.setState({
       counter: newCountr,
-      hash: new Buffer(JSON.stringify(newCountr)).toString('base64')
+      hash: toBuffer(newCountr)
     })
   }
   componentDidMount() {
@@ -70,7 +73,7 @@ export default class Countr extends React.Component {
           hash: document.location.hash.split('#')[1]
         })
       }
-    } else if(Object.keys(JSON.parse(localStorage.counter)).length > 0) {
+    } else if (Object.keys(JSON.parse(localStorage.counter)).length > 0) {
       const countr = JSON.parse(localStorage.counter)
       this.setState({
         counter: countr,
@@ -79,13 +82,12 @@ export default class Countr extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    localStorage.counter = JSON.stringify(this.state.counter);
-    console.log('did update',this.state.hash)
+    localStorage.counter = JSON.stringify(this.state.counter)
     location.hash = this.state.hash
   }
   renderCountr() {
     const render = []
-    for(const key in this.state.counter) {
+    for (const key in this.state.counter) {
       render.push(
         <CountrItem
           key={key}
@@ -97,7 +99,16 @@ export default class Countr extends React.Component {
         />
       )
     }
-    return <div>{render}<p><a className='countr-share_link' href={`#${this.state.hash}`}>share your countr</a></p></div>
+    return (
+      <div>
+        {render}
+        <div style={{textAlign: 'center'}}>
+          <a className="countr-link" href={`#${this.state.hash}`}>countr v1.0.0</a>
+          <span> | </span>
+          <a className="countr-link" href="https://github.com/ntwcklng/countr">github</a>
+        </div>
+      </div>
+    )
   }
   render() {
     return (
@@ -107,15 +118,14 @@ export default class Countr extends React.Component {
         <style>{styles}</style>
           <h1 onClick={() => this.openModal()}>countr+</h1>
           <div className="countr-items">
-            <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel='Add Countr'>
-              <div className='countr-modal_close' onClick={() => this.closeModal()}>close</div>
+            <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel="Add Countr">
+              <div className="countr-modal_close" onClick={() => this.closeModal()}>close</div>
               <div>
-                <input type='text' placeholder='Description' ref='addInput' className='countr-input_add'/>
-                <div className='countr-modal_add' onClick={() => this.addCountr()}>add</div>
+                <input type="text" placeholder="Description" ref="addInput" className="countr-input_add"/>
+                <div className="countr-modal_add" onClick={() => this.addCountr()}>add</div>
               </div>
             </Modal>
             {Object.keys(this.state.counter).length > 0 ? this.renderCountr() : <h2>click on countr+ to add new a counter.</h2>}
-
           </div>
         </div>
       </div>

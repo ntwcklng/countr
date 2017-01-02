@@ -1,5 +1,6 @@
 {
   "name": "countr",
+  "version": "1.0.0",
   "dependencies": {
     "next": "1.2.3",
     "react-modal": "^1.6.5",
