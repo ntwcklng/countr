@@ -1,0 +1,13 @@
+{
+  "name": "countr",
+  "dependencies": {
+    "next": "1.2.3",
+    "react-modal": "^1.6.5",
+    "uuid": "^3.0.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}

@@ -1,0 +1,8 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var style = "\n.countr-items {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n}\n.ReactModalPortal > div {\n  opacity: 0;\n}\n.ReactModalPortal .ReactModal__Overlay {\n  transition: opacity 200ms ease-in-out;\n  background: rgba(0, 0, 0, 0.15);\n}\n.ReactModal__Overlay--after-open {\n  opacity: 1;\n}\n.ReactModal__Overlay--before-close {\n  opacity: 0;\n}\n.countr-input_add {\n  width: 100%;\n  background-color: #f2f2f2;\n  border: 0;\n  padding: 10px;\n  font-size: 16px;\n  font-family: Menlo, Monaco, Lucida Console, Courier New, monospace, serif;\n}\n.countr-modal_add {\n  color: #067df7;\n  float: left;\n  font-size: 24px;\n  font-weight: bold;\n  margin: 12px auto;\n  text-align: center;\n}\n.countr-modal_close {\n  margin-bottom: 25px;\n  font-size: 14px;\n  color: red;\n  float: right;\n}\n.app {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  margin-top: 35px;\n  padding-bottom: 100px;\n}\n.countr-item {\n  width: 100%;\n  display: flex;\n  justify-content: stretch;\n  flex-direction: row;\n  font-size: 28px;\n  padding: 40px;\n}\n.countr-item_decr-incr {\n  align-self: center;\n  flex: 1;\n  text-align: center;\n  padding: 10px;\n}\n.countr-item_num {\n  width: 100%;\n  padding: 15px;\n  text-align: center;\n}\nh1 {\n  color: #067df7;\n}\nh2 {\n  color: rgba(0,0,0,.2);\n  margin: 60px auto;\n  padding: 13px;\n  font-size: 14px;\n  text-align: center;\n}\nh6 {\n  font-size: 16px;\n  font-weight: normal;\n  color: #067df7;\n}\n.countr-share_link {\n  text-align: center;\n  font-size: 13px;\n  margin: 0 auto;\n  display: block;\n}\n";
+
+exports.default = style;
