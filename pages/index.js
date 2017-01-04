@@ -66,8 +66,9 @@ export default class Countr extends React.Component {
   }
   componentDidMount() {
     if (document.location.hash.length > 0) {
-      const countr = JSON.parse(atob(document.location.hash.split('#')[1]))
+      const countr = JSON.parse(Buffer.from(document.location.hash.split('#')[1], 'base64'))
       if (Object.keys(countr).length > 0) {
+        console.log(countr)
         this.setState({
           counter: countr,
           hash: document.location.hash.split('#')[1]
@@ -77,13 +78,12 @@ export default class Countr extends React.Component {
       const countr = JSON.parse(localStorage.counter)
       this.setState({
         counter: countr,
-        hash: new Buffer(JSON.stringify(countr)).toString('base64')
+        hash: toBuffer(countr)
       })
     }
   }
   componentDidUpdate(prevProps, prevState) {
     localStorage.counter = JSON.stringify(this.state.counter)
-    location.hash = this.state.hash
   }
   renderCountr() {
     const render = []
@@ -103,7 +103,7 @@ export default class Countr extends React.Component {
       <div>
         {render}
         <div style={{textAlign: 'center'}}>
-          <a className="countr-link" href={`#${this.state.hash}`}>countr v1.0.0</a>
+          <a className="countr-link" href={`#${this.state.hash}`}>countr v1.0.1</a>
           <span> | </span>
           <a className="countr-link" href="https://github.com/ntwcklng/countr">github</a>
         </div>
@@ -115,7 +115,7 @@ export default class Countr extends React.Component {
       <div>
         <Header />
         <div className="app">
-        <style>{styles}</style>
+        <style jsx>{styles}</style>
           <h1 onClick={() => this.openModal()}>countr+</h1>
           <div className="countr-items">
             <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel="Add Countr">

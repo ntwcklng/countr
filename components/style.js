@@ -54,7 +54,7 @@ const style = `
   justify-content: stretch;
   flex-direction: row;
   font-size: 28px;
-  padding: 40px;
+  padding: 10px;
 }
 .countr-item_decr-incr {
   align-self: center;
