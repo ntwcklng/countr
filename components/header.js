@@ -4,7 +4,7 @@ export default () => (
     <Head>
       <title>countr</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-      <style>{`
+      <style jsx global>{`
         * { box-sizing: border-box; margin: 0; padding: 0 }
         html {
           background-color: #fff;
@@ -20,6 +20,30 @@ export default () => (
           color: #067df7;
           border-bottom: none;
           text-decoration: none;
+        }
+        .app {
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          margin-top: 35px;
+          padding-bottom: 100px;
+        }
+        h1 {
+          color: #067df7;
+        }
+        h2 {
+          color: rgba(0,0,0,.2);
+          margin: 60px auto;
+          padding: 13px;
+          font-size: 14px;
+          text-align: center;
+        }
+        h6 {
+          font-size: 16px;
+          font-weight: normal;
+          color: #067df7;
         }
       `}
       </style>

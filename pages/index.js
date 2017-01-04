@@ -1,9 +1,10 @@
 import React from 'react'
 import CountrItem from '../components/countr-item'
 import Header from '../components/header'
-import styles from '../components/style'
 import uuid from 'uuid/v4'
 import Modal from 'react-modal'
+import CountrAdd from '../components/countr-add'
+import Footer from '../components/footer'
 function toBuffer(obj) {
   return new Buffer(JSON.stringify(obj)).toString('base64')
 }
@@ -18,14 +19,15 @@ export default class Countr extends React.Component {
   }
   openModal() {
     this.setState({modal: true}, () => {
-      this.refs.addInput.focus()
+      this.addInput.focus()
     })
   }
   closeModal() {
     this.setState({modal: false})
   }
   addCountr() {
-    const input = this.refs.addInput.value
+    const input = this.addInput.value
+    console.log(input)
     if (input.length > 25) {
       alert(`${input} is a bit too long. Max 25 Chars`)
     }
@@ -102,11 +104,7 @@ export default class Countr extends React.Component {
     return (
       <div>
         {render}
-        <div style={{textAlign: 'center'}}>
-          <a className="countr-link" href={`#${this.state.hash}`}>countr v1.0.1</a>
-          <span> | </span>
-          <a className="countr-link" href="https://github.com/ntwcklng/countr">github</a>
-        </div>
+        <Footer hash={this.state.hash}/>
       </div>
     )
   }
@@ -115,18 +113,35 @@ export default class Countr extends React.Component {
       <div>
         <Header />
         <div className="app">
-        <style jsx>{styles}</style>
           <h1 onClick={() => this.openModal()}>countr+</h1>
           <div className="countr-items">
-            <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel="Add Countr">
-              <div className="countr-modal_close" onClick={() => this.closeModal()}>close</div>
-              <div>
-                <input type="text" placeholder="Description" ref="addInput" className="countr-input_add"/>
-                <div className="countr-modal_add" onClick={() => this.addCountr()}>add</div>
-              </div>
-            </Modal>
+            <style jsx>{`
+              .countr-items {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+              }
+            `}</style>
             {Object.keys(this.state.counter).length > 0 ? this.renderCountr() : <h2>click on countr+ to add new a counter.</h2>}
           </div>
+          <style jsx>{`
+          .ReactModalPortal > div {
+            opacity: 0;
+          }
+          .ReactModalPortal .ReactModal__Overlay {
+            transition: opacity 200ms ease-in-out;
+            background: rgba(0, 0, 0, 0.15);
+          }
+          .ReactModal__Overlay--after-open {
+            opacity: 1;
+          }
+          .ReactModal__Overlay--before-close {
+            opacity: 0;
+          }
+          `}</style>
+          <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel="Add Countr">
+          <CountrAdd close={() => this.closeModal()} add={() => this.addCountr()} inputRef={(input) => { this.addInput = input }} />
+          </Modal>
         </div>
       </div>
     )
