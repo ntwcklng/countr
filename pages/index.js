@@ -5,9 +5,11 @@ import uuid from 'uuid/v4'
 import Modal from 'react-modal'
 import CountrAdd from '../components/countr-add'
 import Footer from '../components/footer'
+
 function toBuffer(obj) {
   return new Buffer(JSON.stringify(obj)).toString('base64')
 }
+
 export default class Countr extends React.Component {
   constructor() {
     super()

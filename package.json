@@ -2,6 +2,7 @@
   "name": "countr",
   "version": "1.0.3",
   "dependencies": {
+    "idgen": "^2.0.2",
     "next": "*",
     "react-modal": "^1.6.5",
     "uuid": "^3.0.1"
