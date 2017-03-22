@@ -117,33 +117,33 @@ export default class Countr extends React.Component {
         <div className="app">
           <h1 onClick={() => this.openModal()}>countr+</h1>
           <div className="countr-items">
-            <style jsx>{`
-              .countr-items {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-              }
-            `}</style>
             {Object.keys(this.state.counter).length > 0 ? this.renderCountr() : <h2>click on countr+ to add new a counter.</h2>}
           </div>
           <style jsx>{`
-          .ReactModalPortal > div {
-            opacity: 0;
-          }
-          .ReactModalPortal .ReactModal__Overlay {
-            transition: opacity 200ms ease-in-out;
-            background: rgba(0, 0, 0, 0.15);
-          }
-          .ReactModal__Overlay--after-open {
-            opacity: 1;
-          }
-          .ReactModal__Overlay--before-close {
-            opacity: 0;
-          }
-          `}</style>
+            .countr-items {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+            }
+            `}</style>
           <Modal closeTimeoutMS={200} isOpen={this.state.modal} onRequestClose={() => this.closeModal()} contentLabel="Add Countr">
           <CountrAdd close={() => this.closeModal()} add={() => this.addCountr()} inputRef={(input) => { this.addInput = input }} />
           </Modal>
+          <style jsx>{`
+            .ReactModalPortal > div {
+              opacity: 0;
+            }
+            .ReactModalPortal .ReactModal__Overlay {
+              transition: opacity 200ms ease-in-out;
+              background: rgba(0, 0, 0, 0.15);
+            }
+            .ReactModal__Overlay--after-open {
+              opacity: 1;
+            }
+            .ReactModal__Overlay--before-close {
+              opacity: 0;
+            }
+            `}</style>
         </div>
       </div>
     )

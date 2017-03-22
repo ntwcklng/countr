@@ -1,5 +1,10 @@
 export default ({add, close, inputRef}) => (
   <div>
+    <div className="countr-modal_close" onClick={close}>close</div>
+    <div>
+      <input type="text" placeholder="Description" ref={inputRef} className="countr-input_add"/>
+      <div className="countr-modal_add" onClick={add}>add</div>
+    </div>
     <style jsx>{`
       .countr-input_add {
         width: 100%;
@@ -23,11 +28,6 @@ export default ({add, close, inputRef}) => (
         color: red;
         float: right;
       }
-    `}</style>
-    <div className="countr-modal_close" onClick={close}>close</div>
-    <div>
-      <input type="text" placeholder="Description" ref={inputRef} className="countr-input_add"/>
-      <div className="countr-modal_add" onClick={add}>add</div>
-    </div>
+      `}</style>
   </div>
 )
